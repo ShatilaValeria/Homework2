@@ -41,9 +41,53 @@ public class CalculatorOperationsTest {
     }
 
     @Test
-    public void difference_22_Minus_Minus900_Expect_Minus16() {
+    public void difference_22_Minus_Minus900_Expect_922() {
         Assert.assertEquals((calculator.differenceNumber(22, -900)), 922, 0 );
     }
 
+    @Test
+    public void composition_22_Multiply_1_Expect_22() {
+        Assert.assertEquals((calculator.compositionNumber(22, 1)), 22, 0 );
+    }
 
+
+    @Test
+    public void composition_22_Multiply_0_Expect_0() {
+        Assert.assertEquals((calculator.compositionNumber(22, 0)), 0, 0 );
+    }
+
+    @Test
+    public void composition_0_Multiply_10_Expect_0() {
+        Assert.assertEquals((calculator.compositionNumber(0, 10)), 0, 0 );
+    }
+
+    @Test
+    public void composition_Minus20_Multiply_10_Expect_Minus200() {
+        Assert.assertEquals((calculator.compositionNumber(-20, 10)), -200, 0 );
+    }
+
+    @Test
+    public void composition_Minus20_Multiply_Minus10_Expect_200() {
+        Assert.assertEquals((calculator.compositionNumber(-20, -10)), 200, 0 );
+    }
+
+    @Test
+    public void division_1_Div_10_Expect_0_1() {
+        Assert.assertEquals((calculator.divisionNumber(1, 10)), 0.1, 0 );
+    }
+
+    @Test
+    public void division_Minus1_Div_10_Expect_Minus0_1() {
+        Assert.assertEquals((calculator.divisionNumber(-1, 10)), -0.1, 0 );
+    }
+
+    @Test
+    public void division_Minus10_Div_Minus10_Expect_1() {
+        Assert.assertEquals((calculator.divisionNumber(-10, -10)), 1, 0 );
+    }
+
+    @Test
+    public void division_0_Div_10_Expect_0() {
+        Assert.assertEquals((calculator.divisionNumber(0, 10)), 0, 0 );
+    }
 }
