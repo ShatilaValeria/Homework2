@@ -1,7 +1,7 @@
 public class Calculator implements CalculatorOperations {
 
     public double sumNumber(double numberFirst, double numberSecond) {
-        return numberFirst + numberSecond;
+        return numberFirst+ numberSecond;
     }
 
     public double differenceNumber(double numberFirst, double numberSecond) {
