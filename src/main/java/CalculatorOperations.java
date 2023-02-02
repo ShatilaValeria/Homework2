@@ -6,4 +6,5 @@ public interface CalculatorOperations {
     double compositionNumber(double numberFirst, double numberSecond);
 
     double divisionNumber(double numberFirst, double numberSecond);
+
 }

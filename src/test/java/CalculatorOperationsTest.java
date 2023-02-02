@@ -1,9 +1,15 @@
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.Scanner;
 
 
 public class CalculatorOperationsTest {
     CalculatorOperations calculator = new Calculator();
+    CalculatorMenu menu = new Menu();
 
     @Test
     public void sum_1_Plus_1_Expect_2() {
@@ -90,4 +96,23 @@ public class CalculatorOperationsTest {
     public void division_0_Div_10_Expect_0() {
         Assert.assertEquals((calculator.divisionNumber(0, 10)), 0, 0 );
     }
+
+ //   @Test
+//   public void division_0_Div0_Expect_0() {
+//        Input input = new Input();
+//        Assert.assertEquals(input.inputN("90"),90,0);
+//       // Assert.assertEquals(input.inputN(123), 123);
+//        //Assert.assertEquals((input.inputN(123)), 123, 0);
+//    }
+//        Input input = new Input();
+//        String fff = "ghj";
+//        Assert.assertEquals(10.0, input.inputN(fff),0);
+//
+
+
+//       calculator.divisionNumber(1, 0);
 }
+
+
+
+

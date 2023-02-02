@@ -2,15 +2,18 @@ import java.util.Scanner;
 
 public class Menu implements CalculatorMenu {
 
-    private double number;
     private int numberOperation;
 
     Scanner scanner = new Scanner(System.in);
     Calculator calculator = new Calculator();
+    DataInput input = new Input();
 
     public void calculator(double numberFirst, double numberSecond) {
         do {
-            switch (getOperation()) {
+            getOperation();
+            String num = scanner.next();
+            int numbe = input.inputOperation(num);
+            switch (numbe) {
                 case 1:
                     System.out.println(numberFirst + " + " + numberSecond + " = " +
                             calculator.sumNumber(numberFirst, numberSecond));
@@ -24,11 +27,11 @@ public class Menu implements CalculatorMenu {
                             calculator.compositionNumber(numberFirst, numberSecond));
                     break;
                 case 4:
-                    if (numberSecond == 0) {
+                    try {
+                        System.out.print(numberFirst + " / " + numberSecond + " = ");
+                        System.out.println(calculator.divisionNumber(numberFirst, numberSecond));
+                    } catch (ArithmeticException e) {
                         System.out.println("На ноль делить нельзя");
-                    } else {
-                        System.out.println(numberFirst + " / " + numberSecond + " = " +
-                                calculator.divisionNumber(numberFirst, numberSecond));
                     }
                     break;
                 case 5:
@@ -40,7 +43,7 @@ public class Menu implements CalculatorMenu {
         } while (true);
     }
 
-    public int getOperation() {
+    public void getOperation() {
         System.out.println("Выберите номер операции с цислами:\n" +
                 "1 Сложение\n" +
                 "2 Вычитание\n" +
@@ -48,30 +51,17 @@ public class Menu implements CalculatorMenu {
                 "4 Деление\n" +
                 "5 Выход");
 
-        if (scanner.hasNextInt()) {
-            numberOperation = scanner.nextInt();
-        } else {
-            System.out.println("Неккоректный ввод данных. Попробуйте еще раз.");
-            scanner.next();
-            numberOperation = getOperation();
-        }
-        return numberOperation;
+//        if (scanner.hasNextInt()) {
+//            numberOperation = scanner.nextInt();
+//        } else {
+//            System.out.println("Неккоректный ввод данных. Попробуйте еще раз.");
+//            scanner.next();
+//            numberOperation = getOperation();
+//        }
     }
 
-    public double getNumber() {
-        System.out.println("Введите число (разделение дробного от целого через ','): ");
-        if (scanner.hasNextDouble()) {
-            number = scanner.nextDouble();
-        } else {
-            System.out.println("Некорректный ввод данных. Попробуйте снова!");
-            scanner.next();
-            number = getNumber();
-        }
-        return number;
-    }
-
-    public void setNumber(double number) {
-        this.number = number;
+    public void getNumber() {
+        System.out.println("Введите число (разделение дробного от целого через '.'): ");
     }
 
     public int getNumberOperation() {

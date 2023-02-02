@@ -1,7 +1,7 @@
 public interface CalculatorMenu {
-    double getNumber();
+    void getNumber();
 
-    int getOperation();
+    void getOperation();
 
     void calculator(double numberFirst, double numberSecond);
 }
