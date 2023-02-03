@@ -3,7 +3,7 @@ public interface CalculatorOperations {
 
     double differenceNumber(double numberFirst, double numberSecond);
 
-    double compositionNumber(double numberFirst, double numberSecond);
+    double multiplicationNumber(double numberFirst, double numberSecond);
 
     double divisionNumber(double numberFirst, double numberSecond);
 

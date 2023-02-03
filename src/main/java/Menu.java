@@ -12,8 +12,8 @@ public class Menu implements CalculatorMenu {
         do {
             getOperation();
             String num = scanner.next();
-            int numbe = input.inputOperation(num);
-            switch (numbe) {
+            int number = input.inputOperation(num);
+            switch (number) {
                 case 1:
                     System.out.println(numberFirst + " + " + numberSecond + " = " +
                             calculator.sumNumber(numberFirst, numberSecond));
@@ -24,7 +24,7 @@ public class Menu implements CalculatorMenu {
                     break;
                 case 3:
                     System.out.println(numberFirst + " * " + numberSecond + " = " +
-                            calculator.compositionNumber(numberFirst, numberSecond));
+                            calculator.multiplicationNumber(numberFirst, numberSecond));
                     break;
                 case 4:
                     try {

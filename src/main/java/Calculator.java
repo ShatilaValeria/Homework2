@@ -8,12 +8,16 @@ public class Calculator implements CalculatorOperations {
         return numberFirst - numberSecond;
     }
 
-    public double compositionNumber(double numberFirst, double numberSecond) {
+    public double multiplicationNumber(double numberFirst, double numberSecond) {
         return numberFirst * numberSecond;
     }
 
     public double divisionNumber(double numberFirst, double numberSecond) {
-        return numberFirst / numberSecond;
+        if(!(numberSecond == 0)) {
+            return numberFirst / numberSecond;
+        } else {
+            throw new ArithmeticException();
+        }
     }
 
 }

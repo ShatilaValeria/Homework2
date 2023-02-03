@@ -1,118 +1,119 @@
-import org.junit.Assert;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.util.Scanner;
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class CalculatorOperationsTest {
-    CalculatorOperations calculator = new Calculator();
-    CalculatorMenu menu = new Menu();
+    static CalculatorOperations calculator = new Calculator();
 
-    @Test
-    public void sum_1_Plus_1_Expect_2() {
-        Assert.assertEquals((calculator.sumNumber(1,1)),2.0, 0);
+    public static List<Object[]> parametersForSum() {
+        List<Object[]> result = new ArrayList<>();
+        result.add(new Object[]{1, 1, 2});
+        result.add(new Object[]{22, -5, 17});
+        result.add(new Object[]{-22, -1, -23});
+        result.add(new Object[]{-1, -1, -2});
+        result.add(new Object[]{1.88, 1.12, 3.0});
+        result.add(new Object[]{-2.1, -2.1, -4.2});
+        result.add(new Object[]{-2.1, 2.1, 0});
+        result.add(new Object[]{022.0, -22.0, 0});
+        result.add(new Object[]{+0, 2.1, 2.1});
+        result.add(new Object[]{-2.1, 0, -2.1});
+        result.add(new Object[]{0, 0, 0});
+        result.add(new Object[]{+0, 0, 0});
+        result.add(new Object[]{-0, -0, 0});
+        return result;
     }
 
-    @Test
-    public void sum_22_Plus_Minus5_Expect_17() {
-        Assert.assertEquals((calculator.sumNumber(22,-5)),17.0, 0);
+    @ParameterizedTest
+    @MethodSource("parametersForSum")
+    public void testSumNumber(double numberFirst, double numberSecond, double paramNumber) {
+        Assertions.assertEquals(calculator.sumNumber(numberFirst, numberSecond), paramNumber);
     }
 
-    @Test
-    public void sum_Minus425_Plus_25_Expect_Minus400() {
-        Assert.assertEquals((calculator.sumNumber(-425,25)),-400.0, 0);
+    public static List<Object[]> parametersForDifference() {
+        List<Object[]> result = new ArrayList<>();
+        result.add(new Object[]{1, 1, 0});
+        result.add(new Object[]{22, -5, 27});
+        result.add(new Object[]{-22, -1, -21});
+        result.add(new Object[]{-1, -1, 0});
+        result.add(new Object[]{1.50, 1.75, -0.25});
+        result.add(new Object[]{-2.1, -3.1, 1});
+        result.add(new Object[]{-2.1, 2.1, -4.2});
+        result.add(new Object[]{022.0, -22.0, 44});
+        result.add(new Object[]{+0, 2.1, -2.1});
+        result.add(new Object[]{-2.1, 0, -2.1});
+        result.add(new Object[]{0, 0, 0});
+        result.add(new Object[]{+0, 0, 0});
+        result.add(new Object[]{-0, -0, 0});
+        return result;
     }
 
-    @Test
-    public void sum_Minus100_Plus_Minus900_Expect_Minus1000() {
-        Assert.assertEquals((calculator.sumNumber(-100,-900)),-1000.0, 0);
+    @ParameterizedTest
+    @MethodSource("parametersForDifference")
+    public void testDifference(double numberFirst, double numberSecond, double paramNumber) {
+        Assertions.assertEquals(calculator.differenceNumber(numberFirst, numberSecond), paramNumber);
     }
 
-    @Test
-    public void difference_22_Minus_38_Expect_Minus16() {
-        Assert.assertEquals((calculator.differenceNumber(22, 38)), -16, 0 );
+    public static List<Object[]> parametersForMultiplication() {
+        List<Object[]> result = new ArrayList<>();
+        result.add(new Object[]{1, 1, 1});
+        result.add(new Object[]{22, -5, -110});
+        result.add(new Object[]{-22, -1, 22});
+        result.add(new Object[]{-1, -1, 1});
+        result.add(new Object[]{1.50, 2.5, 3.75});
+        result.add(new Object[]{-2.5, -3.5, 8.75});
+        result.add(new Object[]{-2.5, 2.5, -6.25});
+        result.add(new Object[]{2.0, -2, -4});
+        result.add(new Object[]{+0, 2.1, 0});
+        result.add(new Object[]{2.1, 0, 0});
+        result.add(new Object[]{0, 0, 0});
+        result.add(new Object[]{+0, 0, 0});
+        result.add(new Object[]{-0, -0, 0});
+        return result;
     }
 
-    @Test
-    public void difference_Minus100_Minus_38_Expect_Minus138() {
-        Assert.assertEquals((calculator.differenceNumber(-100, 38)), -138, 0 );
+    @ParameterizedTest
+    @MethodSource("parametersForMultiplication")
+    public void testMultiplication(double numberFirst, double numberSecond, double paramNumber) {
+        Assertions.assertEquals(calculator.multiplicationNumber(numberFirst, numberSecond), paramNumber);
     }
 
-    @Test
-    public void difference_Minus100_Minus_Minus38_Expect_Minus62() {
-        Assert.assertEquals((calculator.differenceNumber(-100, -38)), -62, 0 );
+    public static List<Object[]> parametersForDivision() {
+        List<Object[]> result = new ArrayList<>();
+        result.add(new Object[]{1, 1, 1});
+        result.add(new Object[]{22, -11, -2});
+        result.add(new Object[]{-22, -1, 22});
+        result.add(new Object[]{-1, -1, 1});
+        result.add(new Object[]{2.50, 2.5, 1});
+        result.add(new Object[]{-2.5, -2.5, 1});
+        result.add(new Object[]{-2.5, 2.5, -1});
+        result.add(new Object[]{2.0, -2, -1});
+        result.add(new Object[]{+0, 2.1, 0});
+        return result;
     }
 
-    @Test
-    public void difference_22_Minus_Minus900_Expect_922() {
-        Assert.assertEquals((calculator.differenceNumber(22, -900)), 922, 0 );
+    @ParameterizedTest
+    @MethodSource("parametersForDivision")
+    public void testDivision(double numberFirst, double numberSecond, double paramNumber) {
+        Assertions.assertEquals(calculator.divisionNumber(numberFirst, numberSecond), paramNumber);
     }
 
-    @Test
-    public void composition_22_Multiply_1_Expect_22() {
-        Assert.assertEquals((calculator.compositionNumber(22, 1)), 22, 0 );
+    public static List<Object[]> parametersForDivisionByZero() {
+        List<Object[]> result = new ArrayList<>();
+        result.add(new Object[]{2.1, 0, 0});
+        result.add(new Object[]{0, 0, 0});
+        result.add(new Object[]{0, +0, 0});
+        result.add(new Object[]{-0, -0, 0});
+        return result;
     }
 
-
-    @Test
-    public void composition_22_Multiply_0_Expect_0() {
-        Assert.assertEquals((calculator.compositionNumber(22, 0)), 0, 0 );
+    @ParameterizedTest
+    @MethodSource("parametersForDivisionByZero")
+    public void testDivisionByZero(double numberFirst, double numberSecond) {
+        Assertions.assertThrows(ArithmeticException.class, () -> {
+            calculator.divisionNumber(numberFirst, numberSecond);
+        });
     }
-
-    @Test
-    public void composition_0_Multiply_10_Expect_0() {
-        Assert.assertEquals((calculator.compositionNumber(0, 10)), 0, 0 );
-    }
-
-    @Test
-    public void composition_Minus20_Multiply_10_Expect_Minus200() {
-        Assert.assertEquals((calculator.compositionNumber(-20, 10)), -200, 0 );
-    }
-
-    @Test
-    public void composition_Minus20_Multiply_Minus10_Expect_200() {
-        Assert.assertEquals((calculator.compositionNumber(-20, -10)), 200, 0 );
-    }
-
-    @Test
-    public void division_1_Div_10_Expect_0_1() {
-        Assert.assertEquals((calculator.divisionNumber(1, 10)), 0.1, 0 );
-    }
-
-    @Test
-    public void division_Minus1_Div_10_Expect_Minus0_1() {
-        Assert.assertEquals((calculator.divisionNumber(-1, 10)), -0.1, 0 );
-    }
-
-    @Test
-    public void division_Minus10_Div_Minus10_Expect_1() {
-        Assert.assertEquals((calculator.divisionNumber(-10, -10)), 1, 0 );
-    }
-
-    @Test
-    public void division_0_Div_10_Expect_0() {
-        Assert.assertEquals((calculator.divisionNumber(0, 10)), 0, 0 );
-    }
-
- //   @Test
-//   public void division_0_Div0_Expect_0() {
-//        Input input = new Input();
-//        Assert.assertEquals(input.inputN("90"),90,0);
-//       // Assert.assertEquals(input.inputN(123), 123);
-//        //Assert.assertEquals((input.inputN(123)), 123, 0);
-//    }
-//        Input input = new Input();
-//        String fff = "ghj";
-//        Assert.assertEquals(10.0, input.inputN(fff),0);
-//
-
-
-//       calculator.divisionNumber(1, 0);
 }
-
-
-
-
